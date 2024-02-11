@@ -26,7 +26,8 @@ jobs:
           wget https://dist.ipfs.io/go-ipfs/v0.11.0/go-ipfs_v0.11.0_linux-amd64.tar.gz
           tar -xvf go-ipfs_v0.11.0_linux-amd64.tar.gz
           sudo mv go-ipfs/ipfs /usr/local/bin/
-          ipfs --version  # Vérifiez que IPFS est installé avec succès
+          ipfs init  # Initialise un nouveau dépôt IPFS
+          ipfs daemon --init  # Démarre le démon IPFS
 
       - name: Add files to IPFS
         run: |
