@@ -13,11 +13,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          submodules: true  # Si vous utilisez des sous-modules Git, sinon, supprimez cette ligne
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+
+      - name: Install IPFS
+        run: |
+          wget https://dist.ipfs.io/go-ipfs/v0.11.0/go-ipfs_v0.11.0_linux-amd64.tar.gz
+          tar -xvf go-ipfs_v0.11.0_linux-amd64.tar.gz
+          sudo mv go-ipfs/ipfs /usr/local/bin/
+          ipfs --version  # Vérifiez que IPFS est installé avec succès
 
       - name: Add files to IPFS
         run: |
