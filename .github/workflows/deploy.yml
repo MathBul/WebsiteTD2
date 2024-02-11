@@ -23,7 +23,7 @@ jobs:
         run: |
           Invoke-WebRequest -Uri https://dist.ipfs.io/go-ipfs/v0.11.0/go-ipfs_v0.11.0_windows-amd64.zip -OutFile go-ipfs.zip
           Expand-Archive go-ipfs.zip -DestinationPath C:\tools\ipfs
-          C:\tools\ipfs\go-ipfs\install.bat
+          Start-Process -FilePath "C:\tools\ipfs\go-ipfs\install.bat" -ArgumentList "/silent" -Wait
           ipfs init  # Initialise un nouveau dépôt IPFS
           Start-Service ipfs  # Démarre le démon IPFS
 
