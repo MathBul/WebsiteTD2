@@ -10,32 +10,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install IPFS
-        run: |
-          Invoke-WebRequest -Uri https://dist.ipfs.io/go-ipfs/v0.11.0/go-ipfs_v0.11.0_windows-amd64.zip -OutFile go-ipfs.zip
-          Expand-Archive go-ipfs.zip -DestinationPath C:\tools\ipfs
-          Start-Process -FilePath "C:\Users\mathi\Apps\kubo_v0.26.0\kubo\install.sh" -ArgumentList "/silent" -Wait
-          ipfs init  # Initialise un nouveau dépôt IPFS
-          Start-Service ipfs  # Démarre le démon IPFS
-
-      - name: Add files to IPFS
-        run: |
-          ipfs add -r .
-
-      - name: Publish to Pinata
-        run: |
-          curl -X POST `
-            -H "Content-Type: application/json" `
-            -H "pinata_api_key: ${{ secrets.PINATA_API }}" `
-            -H "pinata_secret_api_key: ${{ secrets.PINATA_API }}" `
-            --data '{"cid": "QmeJaufp9seXCpHMFwxX53P3oRQW8Ny1DduCXAxebEwxv7"}' `
-            https://api.pinata.cloud/pinning/pinByHash
+    steps:   
+      - name: IPFS Pinata deploy GitHub action
+        uses: popovoleksandr/ipfs-pinata-deploy-action@v1.6.3
+       
