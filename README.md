@@ -1,8 +1,6 @@
-# TD2
+# TD2 DECENTRALIZED TECHNOLOGIES Mathilde Bulat CDOF1
 
-
-
-##TORRENT
+## TORRENT
 
 ### Question 1
 
